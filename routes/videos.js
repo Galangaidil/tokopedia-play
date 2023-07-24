@@ -56,7 +56,7 @@ router.post('/:id/comments', async function (req, res) {
         const newComment = await comment.save();
         res.status(201).json(newComment);
     } catch (e) {
-        res.status(500).json({message: e.message})
+        res.status(422).json({message: e.message})
     }
 });
 
