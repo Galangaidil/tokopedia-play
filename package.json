@@ -14,5 +14,8 @@
     "mongoose": "^7.4.0",
     "morgan": "~1.9.1",
     "nodemon": "^3.0.1"
+  },
+  "devDependencies": {
+    "@faker-js/faker": "^8.0.2"
   }
 }
