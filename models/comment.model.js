@@ -12,6 +12,10 @@ const CommentSchema = mongoose.Schema({
     body: {
         type: String,
         required: true,
+    },
+    timestamp: {
+        type: Date,
+        default: Date.now
     }
 });
 
