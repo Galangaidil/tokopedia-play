@@ -7,6 +7,7 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 
 const videosRouter = require('./routes/videos');
+const seedsRouter = require('./routes/seeds');
 
 mongoose.connect(process.env.DATABASE_URL, {useNewUrlParser: true, useUnifiedTopology: true});
 
@@ -25,5 +26,6 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/api/videos', videosRouter);
+app.use('/api/seeds', seedsRouter);
 
 module.exports = app;
