@@ -1,7 +1,39 @@
+# Seed the database with some data
 GET http://127.0.0.1:3000/api/seeds
 Accept: application/json
 
+# Delete all data from the database
 ###
-
 DELETE http://127.0.0.1:3000/api/seeds
-accept: application/json
+Accept: application/json
+
+# Video Thumbnail List
+###
+GET http://127.0.0.1:3000/api/videos
+Accept: application/json
+
+# Video Detail
+###
+GET http://127.0.0.1:3000/api/videos/64bec86a085e1fd1a705936d
+Accept: application/json
+
+# Product List
+###
+GET http://127.0.0.1:3000/api/videos/64bec86a085e1fd1a705936d/products
+Accept: application/json
+
+# Comment List
+###
+GET http://127.0.0.1:3000/api/videos/64bec86a085e1fd1a705936d/comments
+Accept: application/json
+
+# Create Comment
+###
+POST http://127.0.0.1:3000/api/videos/64bec86a085e1fd1a705936d/comments
+Accept: application/json
+Content-Type: application/json
+
+{
+  "username": "Galang Aidil Akbar",
+  "body": "This is a comment"
+}
