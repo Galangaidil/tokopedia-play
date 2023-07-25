@@ -1,0 +1,33 @@
+@startuml
+!theme crt-green
+entity "Videos" as Videos {
+    _id: string <<generated>>
+    ---
+    title: string
+    thumbnail_url: string
+}
+
+entity "Products" as Products {
+    _id: string <<generated>>
+    videoId: string <<FK>>
+    ---
+    title: string
+    description: string
+    price: number
+    link: string
+    photo: string
+}
+
+entity "Comments" as Comments {
+    _id: string <<generated>>
+    videoId: string <<FK>>
+    ---
+    username: string
+    body: string
+    timestamp: date
+}
+
+Videos "1  "--> "N  " Products
+Videos "1  "--> "N  " Comments
+
+@enduml

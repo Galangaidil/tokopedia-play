@@ -1,0 +1,16 @@
+@startuml
+!theme crt-green
+
+actor User as user
+
+node "Backend" {
+    component "routes" as routes
+    component "models" as models
+}
+
+database "MongoDB" as mongo
+
+user <--> routes
+routes <--> models
+models <--> mongo
+@enduml
