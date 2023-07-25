@@ -32,7 +32,7 @@ router.get('/:id', async function (req, res) {
 /* GET products listing by video id. */
 router.get('/:id/products', async function (req, res) {
     try {
-        const products = await Product.find({videoId: req.params.id});
+        const products = await Product.find({videoId: req.params.id}, "-description");
         res.status(200).json(products);
     } catch (e) {
         res.status(500).json({message: e.message})
