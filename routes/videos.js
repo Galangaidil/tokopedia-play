@@ -18,6 +18,11 @@ router.get('/', async function (req, res) {
 router.get('/:id', async function (req, res) {
     try {
         const video = await Video.findById(req.params.id);
+
+        if (!video) {
+            return res.status(404).json({message: 'Video not found'});
+        }
+
         res.status(200).json(video);
     } catch (e) {
         res.status(500).json({message: e.message})
