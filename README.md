@@ -97,20 +97,20 @@ This API will return a list of videos.
 - Success Response
     - Code: 200
     - Content:
-        ```json
-        [
-          {
-            "_id": "string",
-            "title": "string",
-            "thumbnail_url": "string"
-          },
-          {
-            "_id": "string",
-            "title": "string",
-            "thumbnail_url": "string"
-          }
-        ]
-        ```
+    ```json
+          [
+            {
+              "_id": "string",
+              "title": "string",
+              "thumbnail_url": "string"
+            },
+            {
+              "_id": "string",
+              "title": "string",
+              "thumbnail_url": "string"
+            }
+          ]
+    ```
 
 ### GET api/videos/:id
 
@@ -125,21 +125,24 @@ This API will return a video with the specified id.
 - Success Response
     - Code: 200
     - Content:
-        ```json
-         {
-            "_id": "string",
-            "title": "string",
-            "thumbnail_url": "string"
-         }
-        ```
+
+    ```json
+           {
+              "_id": "string",
+              "title": "string",
+              "thumbnail_url": "string"
+           }
+    ```
+
 - Error Response
     - Code: 404
     - Content:
-        ```json
-        {
-          "message": "Video not found"
-        }
-        ```
+
+    ```json
+          {
+            "message": "Video not found"
+          }
+    ```
 
 ### GET api/videos/:id/products
 
@@ -154,26 +157,27 @@ This API will return a list of products that are related to the video with the s
 - Success Response
     - Code: 200
     - Content:
-        ```json
-        [
-          {
-            "_id": "string",
-            "videoId": "string",
-            "title": "string",
-            "price": "number",
-            "link": "string",
-            "photo": "string"
-          },
-          {
-            "_id": "string",
-            "videoId": "string",
-            "title": "string",
-            "price": "number",
-            "link": "string",
-            "photo": "string"
-          }
-        ]
-        ```
+
+    ```json
+          [
+            {
+              "_id": "string",
+              "videoId": "string",
+              "title": "string",
+              "price": "number",
+              "link": "string",
+              "photo": "string"
+            },
+            {
+              "_id": "string",
+              "videoId": "string",
+              "title": "string",
+              "price": "number",
+              "link": "string",
+              "photo": "string"
+            }
+          ]
+    ```
 
 ### GET api/videos/:id/comments
 
@@ -188,24 +192,25 @@ This API will return a list of comments that are related to the video with the s
 - Success Response
     - Code: 200
     - Content:
-        ```json
-        [
-          {
-            "_id": "string",
-            "videoId": "string",
-            "username": "string",
-            "body": "string",
-            "timestamp": "date"
-          },
-          {
-            "_id": "string",
-            "videoId": "string",
-            "username": "string",
-            "body": "string",
-            "timestamp": "date"
-          }
-        ]
-        ```
+
+    ```json
+          [
+            {
+              "_id": "string",
+              "videoId": "string",
+              "username": "string",
+              "body": "string",
+              "timestamp": "date"
+            },
+            {
+              "_id": "string",
+              "videoId": "string",
+              "username": "string",
+              "body": "string",
+              "timestamp": "date"
+            }
+          ]
+    ```
 
 ### POST api/videos/:id/comments
 
@@ -220,23 +225,26 @@ This API will create a new comment for the video with the specified id.
 - Success Response
     - Code: 201
     - Content:
-        ```json
-        {
-          "_id": "string",
-          "videoId": "string",
-          "username": "string",
-          "body": "string",
-          "timestamp": "date"
-        }
-        ```
+
+    ```json
+          {
+            "_id": "string",
+            "videoId": "string",
+            "username": "string",
+            "body": "string",
+            "timestamp": "date"
+          }
+    ```
+
 - Error Response
     - Code: 422
     - Content:
-        ```json
-        {
-          "message": "Validation failed"
-        }
-        ```
+
+    ```json
+          {
+            "message": "Validation failed"
+          }
+    ```
 
 **Additional APIs**
 
@@ -255,11 +263,12 @@ This API will seed the database with some data.
 - Success Response
     - Code: 200
     - Content:
-        ```json
-        {
-          "message": "Seeding data successfully"
-        }
-        ```
+
+    ```json
+          {
+            "message": "Seeding data successfully"
+          }
+    ```
 
 ### DELETE api/seeds
 
@@ -274,23 +283,29 @@ This API will delete all data in the database.
 - Success Response
     - Code: 200
     - Content:
-        ```json
-        {
-          "message": "Deleting data successfully"
-        }
-        ```
+
+    ```json
+          {
+            "message": "Deleting data successfully"
+          }
+    ```
 
 ## How to run it locally
 
 1. Clone this repository
+
     ```bash
     git clone https://github.com/Galangaidil/tokopedia-play-backend.git
     ```
+
 2. Install dependencies
+
     ```bash
     npm install
     ```
+
 3. Copy `.env.example` to `.env`
+
     ```bash
    # for linux and mac users
     cp .env.example .env
@@ -298,12 +313,34 @@ This API will delete all data in the database.
    # for windows users
     copy .env.example .env 
     ```  
+
 4. Open `.env` file and put your database connection url as follows:
+
     ```bash
     DATABASE_URL = mongodb://127.0.0.1:27017/final_project
     ```
+
 5. Run the server
+
     ```bash
     npm start
     ```
+
 6. Now the server is running on port 3000. So you can access it via `http://127.0.0.1:3000` or `http://localhost:3000`
+
+## Test the APIs
+
+You can test the APIs using Postman. You can download it [here](https://www.postman.com/downloads/). If you don't use
+postman (like me), you can use the file `rest-api.http` in the root directory of this repository. This file contains all
+the APIs that you can test using VSCode. You can install
+the [REST Client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) extension to run the APIs.
+After installing the extension, you can open the file `rest-api.http` and click the `Send Request` button to run the
+APIs.
+
+## Contact
+
+If you have any questions, feel free to contact me at email below:
+
+- Email: `galangaidil45@gmail.com`
+
+I will be happy to answer your questions :)
