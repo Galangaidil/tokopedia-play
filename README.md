@@ -1,4 +1,4 @@
-# Backend
+# Tokopedia Play - Backend
 
 This repository contains backend for the final project of
 the course "Generasi Gigih 3.0 - Fullstack Engineering" by
@@ -284,7 +284,7 @@ This API will delete all data in the database.
 
 1. Clone this repository
     ```bash
-    git clone # this repository url
+    git clone https://github.com/Galangaidil/tokopedia-play-backend.git
     ```
 2. Install dependencies
     ```bash
