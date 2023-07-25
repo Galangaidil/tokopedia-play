@@ -61,7 +61,7 @@ the `videos` collection.
 
 ## API Structure
 
-![Database Schema](./docs/api-structure.png)
+![Database Schema](./docs/api-architecture.png)
 
 As shown in the image above, the API structure is as follows:
 
@@ -80,7 +80,7 @@ validation one. So I don't need to create another layer to handle the validation
 
 ## List APIs
 
-![List APIs](./docs/list-apis.png)
+![Database Schema](./docs/List-APIs.png)
 
 As shown in the image above, the list of APIs is as follows:
 
