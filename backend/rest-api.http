@@ -14,22 +14,22 @@ Accept: application/json
 
 # Video Detail
 ###
-GET http://127.0.0.1:3000/api/videos/64bec86a085e1fd1a705936d
+GET http://127.0.0.1:3000/api/videos/64d5e3c86275d619b485b531
 Accept: application/json
 
 # Product List
 ###
-GET http://127.0.0.1:3000/api/videos/64bec86a085e1fd1a705936d/products
+GET http://127.0.0.1:3000/api/videos/64d5e3c86275d619b485b531/products
 Accept: application/json
 
 # Comment List
 ###
-GET http://127.0.0.1:3000/api/videos/64bec86a085e1fd1a705936d/comments
+GET http://127.0.0.1:3000/api/videos/64d5e3c86275d619b485b531/comments
 Accept: application/json
 
 # Create Comment
 ###
-POST http://127.0.0.1:3000/api/videos/64bec86a085e1fd1a705936d/comments
+POST http://127.0.0.1:3000/api/videos/64d5e3c86275d619b485b531/comments
 Accept: application/json
 Content-Type: application/json
 
