@@ -5,9 +5,25 @@ const Product = require('../models/product.model');
 const Comment = require('../models/comment.model');
 const {faker} = require('@faker-js/faker');
 
+const youtubeEmbededVideosUrl = [
+    "https://www.youtube.com/embed/q32mn4ls6Co",
+    "https://www.youtube.com/embed/0jffk3JA1Bo",
+    "https://www.youtube.com/embed/5hXoNuZUbNM",
+    "https://www.youtube.com/embed/3_yxVjV88Zk",
+    "https://www.youtube.com/embed/Ix09qfew6oA",
+    "https://www.youtube.com/embed/jiUxHm9l1KY",
+    "https://www.youtube.com/embed/Up5kkJ0hEU0",
+    "https://www.youtube.com/embed/x3cANGNPyx0",
+    "https://www.youtube.com/embed/zvWKqUiovAM",
+    "https://www.youtube.com/embed/gAkwW2tuIqE",
+    "https://www.youtube.com/embed/3nFbRd4FnRo",
+    "https://www.youtube.com/embed/ms6ltwRC1sE",
+    "https://www.youtube.com/embed/6UJnu25ji2A"
+]
+
 /* GET seeds data. */
 router.get('/', async function (req, res) {
-    const numVideos = 10; // You can adjust this to the desired number of videos
+    const numVideos = 12; // You can adjust this to the desired number of videos
 
     try {
         const seedData = async () => {
@@ -22,6 +38,7 @@ router.get('/', async function (req, res) {
                 const video = {
                     title: faker.lorem.sentence(),
                     thumbnail_url: faker.image.url(),
+                    url: youtubeEmbededVideosUrl[(Math.floor(Math.random() * youtubeEmbededVideosUrl.length))],
                 };
                 videos.push(video);
 
