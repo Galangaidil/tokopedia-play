@@ -45,7 +45,7 @@ const VideoCardList: React.FC<VideoCardListProps> = ({videos, isLoading}) => {
     const skeletonArray = Array.from({length: numberOfSkeletons});
 
     return (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-6">
+        <div className="grid grid-cols-2 lg:grid-cols-6 gap-6">
             {isLoading
                 ? skeletonArray.map((_, index) => <VideoSkeleton key={index}/>)
                 : videos.map((video) => <VideoCard key={video._id} {...video} />)}
