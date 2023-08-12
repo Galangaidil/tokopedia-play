@@ -1,16 +1,14 @@
-import {useEffect, useState} from "react";
 import VideoInterface from "../interfaces/video.interface.ts";
 import VideoCard from "../components/VideoCard.tsx";
+import useFetch from "../hooks/useFetch.ts";
+import Loading from "../components/Loading.tsx";
 
 function Home() {
-    const [videos, setVideos] = useState<VideoInterface[]>();
+    const {data: videos, loading, error} = useFetch<VideoInterface[]>("http://127.0.0.1:3000/api/videos/");
 
-    useEffect(() => {
-        fetch('http://127.0.0.1:3000/api/videos')
-            .then((r) => r.json())
-            .then((d) => setVideos(d))
-            .catch((e) => alert(e))
-    }, [])
+    if (loading) return (<Loading/>);
+
+    if (error) return <h1>There is an error occurs...</h1>;
 
     return (
         <div className="container py-12 px-8 lg:px-0">
