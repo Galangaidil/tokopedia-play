@@ -8,7 +8,7 @@ the course "Generasi Gigih 3.0 - Fullstack Engineering" by
 
 ![Database Schema](./docs/database-schema.png)
 
-From the schema above, we can see that there are 3 collections in the database:
+From the schema above, we can see that there are three collections in the database:
 
 - `videos`
 - `products`
@@ -69,12 +69,12 @@ As shown in the image above, the API structure is as follows:
 - `Backend` is the backend server that will serve the API (Node JS and Express JS)
 - `MongoDB` is the database that will store the data
 
-inside the `Backend` there are 2 layers:
+inside the `Backend` there are two layers:
 
 - `routes` is the layer that will handle the request from the `User` and send the response back to the `User`
 - `models` is the layer that will handle the data from the `MongoDB` and send the data back to the `routes`
 
-I don't use `controllers` and `services` layers because the API is very simple and does not require a lot of business
+I don't use `controllers` and `services` layers because the API is basic and does not require a lot of business
 logic. On top of that, `mongoose` already provides a lot of methods to interact with the database, including the
 validation one. So I don't need to create another layer to handle the validation and business logic.
 
