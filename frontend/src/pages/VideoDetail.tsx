@@ -95,7 +95,8 @@ function VideoDetail() {
                 <div className="lg:col-span-2">
                     <h2 className="text-lg font-bold">Products</h2>
 
-                    <div className="mt-4 flex overflow-x-auto gap-x-8 lg:block lg:overscroll-x-none lg:gap-x-0 lg:space-y-8">
+                    <div
+                        className="mt-4 flex overflow-x-auto gap-x-8 lg:block lg:overscroll-x-none lg:gap-x-0 lg:space-y-8 lg:h-screen lg:overflow-y-scroll">
                         {products?.map((product) => (
                             <RenderProduct key={product._id} {...product}/>
                         ))}
@@ -129,8 +130,6 @@ function RenderComment(comment: CommentInterface) {
 // function to render product
 function RenderProduct(product: ProductInterface) {
     const limitedTitle = useTextLimit(product.title, 30);
-
-    console.log(limitedTitle.length)
 
     return (
         <div className="w-2/3 shrink-0 lg:w-full">
