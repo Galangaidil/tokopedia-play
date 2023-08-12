@@ -5,6 +5,7 @@ import ProductInterface from "../interfaces/product.interface.ts";
 import CommentInterface from "../interfaces/comment.interface.ts";
 import Loading from "../components/Loading.tsx";
 import React, {useState} from "react";
+import ErrorPage from "./500.tsx";
 
 function VideoDetail() {
     const {id} = useParams();
@@ -43,9 +44,9 @@ function VideoDetail() {
         })
     }
 
-    if (loading) return (<Loading/>);
+    if (loading) return <Loading/>;
 
-    if (error) return <h1>There is an error occurs...</h1>;
+    if (error) return <ErrorPage/>;
 
     return (
         <div className="container py-12 px-8 lg:px-0">

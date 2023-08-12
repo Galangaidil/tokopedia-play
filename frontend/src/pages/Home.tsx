@@ -7,7 +7,7 @@ import ErrorPage from "./500.tsx";
 function Home() {
     const {data: videos, loading, error} = useFetch<VideoInterface[]>("http://127.0.0.1:3000/api/videos/");
 
-    if (loading) return (<Loading/>);
+    if (loading) return <Loading/>;
 
     if (error) return <ErrorPage/>;
 
