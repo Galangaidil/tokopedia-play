@@ -4,7 +4,7 @@ import VideoInterface from "../interfaces/video.interface.ts";
 import ProductInterface from "../interfaces/product.interface.ts";
 import CommentInterface from "../interfaces/comment.interface.ts";
 import Loading from "../components/Loading.tsx";
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import ErrorPage from "./500.tsx";
 import useTextLimit from "../hooks/useTextLimit.ts";
 
@@ -12,11 +12,18 @@ function VideoDetail() {
     const {id} = useParams();
     const {data: video, loading, error} = useFetch<VideoInterface>(`http://127.0.0.1:3000/api/videos/${id}`);
     const {data: products} = useFetch<ProductInterface[]>(`http://127.0.0.1:3000/api/videos/${id}/products`);
-    const {data: comments} = useFetch<CommentInterface[]>(`http://127.0.0.1:3000/api/videos/${id}/comments`);
+    const [comments, setComments] = useState<CommentInterface[]>([]);
+    const {data: fetchedComments} = useFetch<CommentInterface[]>(`http://127.0.0.1:3000/api/videos/${id}/comments`);
     const [formComment, setFormComment] = useState({
         username: "",
         body: "",
     });
+
+    useEffect(() => {
+        if (fetchedComments) {
+            setComments(fetchedComments);
+        }
+    }, [fetchedComments]);
 
     function handleSubmitComment(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault()
@@ -37,7 +44,7 @@ function VideoDetail() {
 
             return res.json()
         }).then((data) => {
-            comments?.push(data)
+            setComments(prevComments => [data, ...prevComments]);
         })
     }
 
@@ -107,24 +114,40 @@ function VideoDetail() {
     );
 }
 
-// function to convert timestamp to date
-function convertTimestamp(timestamp: string) {
-    const date = new Date(timestamp);
-
-    return date.toLocaleString();
-}
-
 // function to render comment
 function RenderComment(comment: CommentInterface) {
     return (
         <div className="chat chat-start">
             <div className="chat-header">
                 {comment.username}
-                <time className="text-xs opacity-50 ml-2">{convertTimestamp(comment.timestamp)}</time>
+                <time className="text-xs opacity-50 ml-2">{formatTimeDifference(comment.timestamp)}</time>
             </div>
             <div className="chat-bubble">{comment.body}</div>
         </div>
     );
+}
+
+// function to format time difference
+function formatTimeDifference(timestamp: string): string {
+    const commentTime = new Date(timestamp).getTime();
+    const currentTime = new Date().getTime();
+    const timeDifference = currentTime - commentTime;
+
+    if (timeDifference < 60000) {
+        return Math.floor(timeDifference / 1000) + ' seconds ago';
+    } else if (timeDifference < 3600000) {
+        return Math.floor(timeDifference / 60000) + ' minutes ago';
+    } else if (timeDifference < 86400000) {
+        return Math.floor(timeDifference / 3600000) + ' hours ago';
+    } else if (timeDifference < 604800000) {
+        return Math.floor(timeDifference / 86400000) + ' days ago';
+    } else if (timeDifference < 2419200000) {
+        return Math.floor(timeDifference / 604800000) + ' weeks ago';
+    } else if (timeDifference < 29030400000) {
+        return Math.floor(timeDifference / 2419200000) + ' months ago';
+    } else {
+        return Math.floor(timeDifference / 29030400000) + ' years ago';
+    }
 }
 
 // function to render product
