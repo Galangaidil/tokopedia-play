@@ -58,9 +58,9 @@ function VideoDetail() {
 
                     <h1 className="text-2xl font-bold mt-8">{video?.title}</h1>
 
-                    <h2 className="text-lg font-bold">Leave a comment</h2>
+                    <h2 className="text-lg font-medium mt-8">Leave a comment</h2>
 
-                    <div className="mt-8 space-y-4">
+                    <div className="mt-4 space-y-4">
                         <form
                             action="#"
                             className="w-full flex flex-col space-y-6"
