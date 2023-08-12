@@ -24,7 +24,7 @@ const VideoCard: React.FC<VideoInterface> = (props: VideoInterface) => {
                     alt={props.title}
                     width={600}
                     height={400}
-                    className="rounded-lg hover:rounded-none transition-all duration-500 ease-in-out w-full h-[400px] object-cover"
+                    className="rounded-lg hover:rounded-none transition-all duration-500 ease-in-out w-full lg:h-[400px] object-cover"
                 />
                 <p className={"mt-6"}>{limit(props.title, 30)}</p>
             </Link>
