@@ -7,7 +7,7 @@ import Loading from "../components/Loading.tsx";
 import React, {useState} from "react";
 
 function VideoDetail() {
-    let {id} = useParams();
+    const {id} = useParams();
 
     const {data: video, loading, error} = useFetch<VideoInterface>(`http://127.0.0.1:3000/api/videos/${id}`);
     const {data: products} = useFetch<ProductInterface[]>(`http://127.0.0.1:3000/api/videos/${video?._id}/products`);
