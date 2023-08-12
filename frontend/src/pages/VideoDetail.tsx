@@ -6,14 +6,13 @@ import CommentInterface from "../interfaces/comment.interface.ts";
 import Loading from "../components/Loading.tsx";
 import React, {useState} from "react";
 import ErrorPage from "./500.tsx";
+import useTextLimit from "../hooks/useTextLimit.ts";
 
 function VideoDetail() {
     const {id} = useParams();
-
     const {data: video, loading, error} = useFetch<VideoInterface>(`http://127.0.0.1:3000/api/videos/${id}`);
     const {data: products} = useFetch<ProductInterface[]>(`http://127.0.0.1:3000/api/videos/${id}/products`);
     const {data: comments} = useFetch<CommentInterface[]>(`http://127.0.0.1:3000/api/videos/${id}/comments`);
-
     const [formComment, setFormComment] = useState({
         username: "",
         body: "",
@@ -21,8 +20,6 @@ function VideoDetail() {
 
     function handleSubmitComment(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault()
-
-        console.log(formComment)
 
         fetch(`http://127.0.0.1:3000/api/videos/${video?._id}/comments`, {
             method: "POST",
@@ -50,14 +47,14 @@ function VideoDetail() {
 
     return (
         <div className="container py-12 px-8 lg:px-0">
-            <div className="grid grid-cols-6 gap-8">
-                <div className="col-span-4">
+            <div className="grid grid-cols-1 lg:grid-cols-6 gap-8">
+                <div className="lg:col-span-4">
                     <iframe width="560" height="315" src={video?.url} title="YouTube video player"
-                            className="w-full h-[600px] rounded"
+                            className="w-full h-[200px] lg:h-[600px] rounded"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                             allowFullScreen></iframe>
 
-                    <h1 className="text-2xl font-bold mt-8">{video?.title}</h1>
+                    <h1 className="text-xl lg:text-2xl font-bold mt-8">{video?.title}</h1>
 
                     <h2 className="text-lg font-medium mt-8">Leave a comment</h2>
 
@@ -81,19 +78,24 @@ function VideoDetail() {
                                 <button className="btn" type="submit">Submit</button>
                             </div>
                         </form>
+                    </div>
 
-                        <div>{comments?.length} comments</div>
-
-                        {comments?.map((comment) => (
-                            <RenderComment key={comment._id} {...comment}/>
-                        ))}
+                    <div tabIndex={0} className="collapse collapse-arrow border border-base-300 bg-base-200 mt-4">
+                        <div className="collapse-title text-base font-normal">
+                            {comments?.length} comments
+                        </div>
+                        <div className="collapse-content">
+                            {comments?.map((comment) => (
+                                <RenderComment key={comment._id} {...comment}/>
+                            ))}
+                        </div>
                     </div>
                 </div>
 
-                <div className="col-span-2">
+                <div className="lg:col-span-2">
                     <h2 className="text-lg font-bold">Products</h2>
 
-                    <div className="mt-4 space-y-8">
+                    <div className="mt-4 flex overflow-x-auto gap-x-8 lg:block lg:overscroll-x-none lg:gap-x-0 lg:space-y-8">
                         {products?.map((product) => (
                             <RenderProduct key={product._id} {...product}/>
                         ))}
@@ -126,18 +128,22 @@ function RenderComment(comment: CommentInterface) {
 
 // function to render product
 function RenderProduct(product: ProductInterface) {
+    const limitedTitle = useTextLimit(product.title, 30);
+
+    console.log(limitedTitle.length)
+
     return (
-        <div>
+        <div className="w-2/3 shrink-0 lg:w-full">
             <img
                 src={product.photo}
                 alt={product.title}
-                className="rounded w-full h-[200px] object-cover"
+                className="rounded w-full lg:h-[200px] object-cover"
                 width={1024}
                 height={1024}
             />
 
             <div className="mt-4">
-                <h3 className="font-medium">{product.title}</h3>
+                <h3 className="font-medium">{limitedTitle}</h3>
 
                 <div className="mt-2">
                     <span className="text-2xl font-bold">${product.price}</span>
