@@ -1,6 +1,7 @@
 import React from "react";
 import {Link} from "react-router-dom";
 import VideoInterface from "../interfaces/video.interface.ts";
+import useTextLimit from "../hooks/useTextLimit.ts";
 
 const VideoSkeleton: React.FC = () => {
     return (
@@ -12,9 +13,7 @@ const VideoSkeleton: React.FC = () => {
 };
 
 const VideoCard: React.FC<VideoInterface> = (props: VideoInterface) => {
-    const limit = (text: string, maxLength: number) => {
-        return text.length > maxLength ? text.substring(0, maxLength) + '...' : text;
-    }
+    const limitedText = useTextLimit(props.title, 30);
 
     return (
         <div key={props._id}>
@@ -26,7 +25,7 @@ const VideoCard: React.FC<VideoInterface> = (props: VideoInterface) => {
                     height={400}
                     className="rounded-lg hover:rounded-none transition-all duration-500 ease-in-out w-full lg:h-[400px] object-cover"
                 />
-                <p className={"mt-6"}>{limit(props.title, 30)}</p>
+                <p className={"mt-6"}>{limitedText}</p>
             </Link>
         </div>
     )
@@ -38,10 +37,8 @@ interface VideoCardListProps {
 }
 
 const VideoCardList: React.FC<VideoCardListProps> = ({videos, isLoading}) => {
-    // Determine the number of skeletons to render
-    const numberOfSkeletons = 12; // For example, render 12 skeletons
+    const numberOfSkeletons = 12;
 
-    // Render skeletons based on the determined number
     const skeletonArray = Array.from({length: numberOfSkeletons});
 
     return (
