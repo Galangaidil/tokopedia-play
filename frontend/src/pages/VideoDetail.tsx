@@ -10,8 +10,8 @@ function VideoDetail() {
     const {id} = useParams();
 
     const {data: video, loading, error} = useFetch<VideoInterface>(`http://127.0.0.1:3000/api/videos/${id}`);
-    const {data: products} = useFetch<ProductInterface[]>(`http://127.0.0.1:3000/api/videos/${video?._id}/products`);
-    const {data: comments} = useFetch<CommentInterface[]>(`http://127.0.0.1:3000/api/videos/${video?._id}/comments`);
+    const {data: products} = useFetch<ProductInterface[]>(`http://127.0.0.1:3000/api/videos/${id}/products`);
+    const {data: comments} = useFetch<CommentInterface[]>(`http://127.0.0.1:3000/api/videos/${id}/comments`);
 
     const [formComment, setFormComment] = useState({
         username: "",
