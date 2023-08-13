@@ -7,6 +7,9 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 
+const HOST = '0.0.0.0';
+const PORT = 3000;
+
 const videosRouter = require('./routes/videos');
 const seedsRouter = require('./routes/seeds');
 
@@ -32,6 +35,10 @@ app.use('/api/seeds', seedsRouter);
 
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '../frontend/dist/index.html'));
+});
+
+app.listen(PORT, () => {
+    console.log(`Running on http://${HOST}:${PORT}`);
 });
 
 module.exports = app;
