@@ -10,10 +10,10 @@ import useTextLimit from "../hooks/useTextLimit.ts";
 
 function VideoDetail() {
     const {id} = useParams();
-    const {data: video, loading, error} = useFetch<VideoInterface>(`http://127.0.0.1:3000/api/videos/${id}`);
-    const {data: products} = useFetch<ProductInterface[]>(`http://127.0.0.1:3000/api/videos/${id}/products`);
+    const {data: video, loading, error} = useFetch<VideoInterface>(`https://coral-app-bus9u.ondigitalocean.app/api/videos/${id}`);
+    const {data: products} = useFetch<ProductInterface[]>(`https://coral-app-bus9u.ondigitalocean.app/api/videos/${id}/products`);
     const [comments, setComments] = useState<CommentInterface[]>([]);
-    const {data: fetchedComments} = useFetch<CommentInterface[]>(`http://127.0.0.1:3000/api/videos/${id}/comments`);
+    const {data: fetchedComments} = useFetch<CommentInterface[]>(`https://coral-app-bus9u.ondigitalocean.app/api/videos/${id}/comments`);
     const [formComment, setFormComment] = useState({
         username: "",
         body: "",
@@ -28,7 +28,7 @@ function VideoDetail() {
     function handleSubmitComment(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault()
 
-        fetch(`http://127.0.0.1:3000/api/videos/${video?._id}/comments`, {
+        fetch(`https://coral-app-bus9u.ondigitalocean.app/api/videos/${video?._id}/comments`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

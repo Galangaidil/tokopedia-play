@@ -4,7 +4,7 @@ import ErrorPage from "./500.tsx";
 import VideoCardList from "../components/VideoCardList.tsx";
 
 function Home() {
-    const {data: videos, loading, error} = useFetch<VideoInterface[]>("http://127.0.0.1:3000/api/videos/");
+    const {data: videos, loading, error} = useFetch<VideoInterface[]>("https://coral-app-bus9u.ondigitalocean.app/api/videos/");
 
     if (error) return <ErrorPage/>;
 
