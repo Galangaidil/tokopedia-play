@@ -91,7 +91,7 @@ function VideoDetail() {
                         <div className="collapse-title text-base font-normal">
                             {comments?.length} comments
                         </div>
-                        <div className="collapse-content">
+                        <div className="collapse-content space-y-4">
                             {comments?.map((comment) => (
                                 <RenderComment key={comment._id} {...comment}/>
                             ))}
@@ -117,13 +117,18 @@ function VideoDetail() {
 // function to render comment
 function RenderComment(comment: CommentInterface) {
     return (
-        <div className="chat chat-start">
-            <div className="chat-header">
-                {comment.username}
-                <time className="text-xs opacity-50 ml-2">{formatTimeDifference(comment.timestamp)}</time>
+        <>
+            <div>
+                <div className="flex space-x-2 items-end">
+                    <p className="text-base font-bold">{comment.username}</p>
+                    <time className="text-xs text-gray-400">{formatTimeDifference(comment.timestamp)}</time>
+                </div>
+                <div className="mt-2">
+                    {comment.body}
+                </div>
             </div>
-            <div className="chat-bubble">{comment.body}</div>
-        </div>
+            <div className="divider"></div>
+        </>
     );
 }
 
