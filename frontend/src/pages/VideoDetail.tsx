@@ -103,7 +103,7 @@ function VideoDetail() {
                     <h2 className="text-lg font-bold">Products</h2>
 
                     <div
-                        className="mt-4 flex overflow-x-auto gap-x-8 lg:block lg:overscroll-x-none lg:gap-x-0 lg:space-y-8 lg:h-screen lg:overflow-y-scroll">
+                        className="mt-4 flex overflow-x-auto gap-x-8 lg:block lg:overscroll-x-none lg:gap-x-0 lg:space-y-8">
                         {products?.map((product) => (
                             <RenderProduct key={product._id} {...product}/>
                         ))}
