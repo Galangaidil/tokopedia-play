@@ -1,9 +1,16 @@
 {
-  "name": "backend",
-  "version": "0.0.0",
+  "name": "tokopedia_play_backend",
+  "version": "1.0.0",
+  "description": "Backend for Tokopedia Play",
+  "main": "app.js",
+  "author": {
+    "name": "Galang Aidil Akbar",
+    "participant_id": "GG3FSGP0337",
+    "email": "galangaidil45@gmail.com"
+  },
   "private": true,
   "scripts": {
-    "start": "nodemon ./bin/www"
+    "start": "nodemon app.js"
   },
   "dependencies": {
     "body-parser": "^1.20.2",
