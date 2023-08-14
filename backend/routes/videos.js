@@ -39,7 +39,7 @@ router.get('/:id/products', async function (req, res) {
     }
 });
 
-/* GET comments listing by video id. */
+/* GET comment listing by video id. */
 router.get('/:id/comments', async function (req, res) {
     try {
         const comments = await Comment.find({videoId: req.params.id});
