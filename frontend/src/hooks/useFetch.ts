@@ -6,7 +6,11 @@ interface FetchResult<T> {
     error: any; // You can replace 'any' with a specific error type if needed
 }
 
-function useFetch<T>(url: string): FetchResult<T> {
+type HttpMethod = 'GET' | 'POST' | 'PUT' | 'DELETE';
+
+function useFetch<T>(endpoint: string, method: HttpMethod, body?: any): FetchResult<T> {
+    const BASE_URL = 'http://localhost:3000/api/';
+
     const [data, setData] = useState<T | null>(null);
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<any>(null);
@@ -14,7 +18,18 @@ function useFetch<T>(url: string): FetchResult<T> {
     useEffect(() => {
         async function fetchData() {
             try {
-                const response = await fetch(url);
+                const response = await fetch(BASE_URL + endpoint, {
+                    method: method,
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(body)
+                });
+
+                if (!response.ok) {
+                    throw new Error('Something went wrong');
+                }
+
                 const jsonData = await response.json();
                 setData(jsonData);
             } catch (err) {
@@ -25,7 +40,7 @@ function useFetch<T>(url: string): FetchResult<T> {
         }
 
         fetchData();
-    }, [url]);
+    }, [endpoint, method, body]);
 
     return {data, loading, error};
 }

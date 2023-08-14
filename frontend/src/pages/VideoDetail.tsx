@@ -10,10 +10,10 @@ import useTextLimit from "../hooks/useTextLimit.ts";
 
 function VideoDetail() {
     const {id} = useParams();
-    const {data: video, loading, error} = useFetch<VideoInterface>(`https://coral-app-bus9u.ondigitalocean.app/api/videos/${id}`);
-    const {data: products} = useFetch<ProductInterface[]>(`https://coral-app-bus9u.ondigitalocean.app/api/videos/${id}/products`);
+    const {data: video, loading, error} = useFetch<VideoInterface>(`videos/${id}`, "GET");
+    const {data: products} = useFetch<ProductInterface[]>(`videos/${id}/products`, "GET");
+    const {data: fetchedComments} = useFetch<CommentInterface[]>(`videos/${id}/comments`, "GET");
     const [comments, setComments] = useState<CommentInterface[]>([]);
-    const {data: fetchedComments} = useFetch<CommentInterface[]>(`https://coral-app-bus9u.ondigitalocean.app/api/videos/${id}/comments`);
     const [formComment, setFormComment] = useState({
         username: "",
         body: "",
@@ -45,6 +45,8 @@ function VideoDetail() {
             return res.json()
         }).then((data) => {
             setComments(prevComments => [data, ...prevComments]);
+        }).catch((err) => {
+            console.log(err)
         })
     }
 
@@ -87,7 +89,8 @@ function VideoDetail() {
                         </form>
                     </div>
 
-                    <div tabIndex={0} className="collapse collapse-arrow border border-base-300 bg-base-200 mt-4 lg:collapse-open">
+                    <div tabIndex={0}
+                         className="collapse collapse-arrow border border-base-300 bg-base-200 mt-4 lg:collapse-open">
                         <div className="collapse-title text-base font-normal">
                             {comments?.length} comments
                         </div>
