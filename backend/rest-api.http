@@ -1,5 +1,5 @@
 # Seed the database with some data
-GET http://127.0.0.1:3000/api/seeds
+POST http://127.0.0.1:3000/api/seeds
 Accept: application/json
 
 # Delete all data from the database

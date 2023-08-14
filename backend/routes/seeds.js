@@ -22,7 +22,7 @@ const youtubeEmbededVideosUrl = [
 ]
 
 /* GET seeds data. */
-router.get('/', async function (req, res) {
+router.post('/', async function (req, res) {
     const numVideos = 12; // You can adjust this to the desired number of videos
 
     try {
