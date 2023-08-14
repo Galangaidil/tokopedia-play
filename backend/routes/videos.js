@@ -42,7 +42,7 @@ router.get('/:id/products', async function (req, res) {
 /* GET comment listing by video id. */
 router.get('/:id/comments', async function (req, res) {
     try {
-        const comments = await Comment.find({videoId: req.params.id});
+        const comments = await Comment.find({videoId: req.params.id}).sort({timestamp: -1});
         res.status(200).json(comments);
     } catch (e) {
         res.status(500).json({message: e.message})
