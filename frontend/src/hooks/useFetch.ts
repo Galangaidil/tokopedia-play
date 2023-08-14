@@ -27,7 +27,7 @@ function useFetch<T>(endpoint: string, method: HttpMethod, body?: any): FetchRes
                 });
 
                 if (!response.ok) {
-                    throw new Error('Something went wrong');
+                    setError('Something went wrong');
                 }
 
                 const jsonData = await response.json();
