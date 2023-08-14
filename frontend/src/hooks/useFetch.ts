@@ -1,4 +1,5 @@
 import {useState, useEffect} from 'react';
+import {API_URL} from "../../config.ts";
 
 interface FetchResult<T> {
     data: T | null;
@@ -9,8 +10,6 @@ interface FetchResult<T> {
 type HttpMethod = 'GET' | 'POST' | 'PUT' | 'DELETE';
 
 function useFetch<T>(endpoint: string, method: HttpMethod, body?: any): FetchResult<T> {
-    const BASE_URL = 'http://localhost:3000/api/';
-
     const [data, setData] = useState<T | null>(null);
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<any>(null);
@@ -18,7 +17,7 @@ function useFetch<T>(endpoint: string, method: HttpMethod, body?: any): FetchRes
     useEffect(() => {
         async function fetchData() {
             try {
-                const response = await fetch(BASE_URL + endpoint, {
+                const response = await fetch(API_URL + endpoint, {
                     method: method,
                     headers: {
                         'Content-Type': 'application/json'

@@ -8,6 +8,7 @@ import ErrorPage from "./500.tsx";
 import CommentCardList from "../components/CommentCardList.tsx";
 import ProductCardList from "../components/ProductCardList.tsx";
 import CommentForm from "../components/CommentForm.tsx";
+import {API_URL} from "../../config.ts";
 
 const VideoSkeleton: React.FC = () => {
     return (
@@ -50,7 +51,7 @@ function VideoDetail() {
     function handleSubmitComment(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault()
 
-        fetch(`https://coral-app-bus9u.ondigitalocean.app/api/videos/${video?._id}/comments`, {
+        fetch(`${API_URL}videos/${video?._id}/comments`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
