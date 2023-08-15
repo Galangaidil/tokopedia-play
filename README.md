@@ -91,17 +91,26 @@ application that mimics the functionality of Tokopedia Play.
 1. Pull the Docker image
 
    ```sh
-   docker pull galangaidil/tokopedia-play
+   docker pull generasigigih/tokopedia-play:1.1
    ```
 
 2. Run the Docker image
 
    ```sh
-   docker run -d -p 3000:3000 --env "DATABASE_URL=<Input Your Database Connection String>" galangaidil/tokopedia-play
+   docker run -d -p 3000:3000 --env "DATABASE_URL=mongodb+srv://<username>:<password>@<host>/<database_name>?retryWrites=true&w=majority" generasigigih/tokopedia-play:1.1
+
+   # You have to use MongoDB Atlas to host your database
+   # make sure to replace <username>, <password>, <host>, and <database_name> with your own database credentials
    ```
 
-3. Open `http://localhost:5173` in your browser
-4. Enjoy!
+3. Seed the database by using this command
+
+   ```sh
+   curl -X POST http://localhost:3000/api/seeds
+   ```
+
+4. Open `http://localhost:3000` in your browser
+5. Enjoy!
 
 #### Using Source Code
 
@@ -114,6 +123,7 @@ application that mimics the functionality of Tokopedia Play.
 2. Install NPM packages both in `backend` and `frontend` directories
 
    ```sh
+   cd tokopedia-play
    cd backend && npm install
    cd ../frontend && npm install
    ```
@@ -121,6 +131,7 @@ application that mimics the functionality of Tokopedia Play.
 3. Create `.env` file in `backend` directory
 
    ```sh
+   # From root directory
    cd backend && touch .env
    ```
 
@@ -133,7 +144,8 @@ application that mimics the functionality of Tokopedia Play.
 5. Run the backend server
 
    ```sh
-   cd backend && npm start
+   # Inside backend directory
+   npm start
    ```
 
 6. Now you should see the following message in your terminal
@@ -152,11 +164,19 @@ application that mimics the functionality of Tokopedia Play.
 8. Run the frontend server
 
    ```sh
-   cd frontend && npm run dev
+    # Inside frontend directory
+   npm run dev
    ```
 
-9. Open `http://localhost:5173` in your browser
-10. Enjoy!
+   you might see empty page in your browser, but don't worry, we haven't seeded the database yet.
+
+9. Seed the database by using this command
+
+   ```sh
+   curl -X POST http://localhost:3000/api/seeds
+   ```
+
+10. Open `http://localhost:5173` in your browser
 
 ## Backend
 
