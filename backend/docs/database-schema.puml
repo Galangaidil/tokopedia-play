@@ -1,10 +1,11 @@
-@startuml
-!theme crt-green
+@startuml database_diagram
+
 entity "Videos" as Videos {
     _id: string <<generated>>
     ---
     title: string
     thumbnail_url: string
+    url: string
 }
 
 entity "Products" as Products {
