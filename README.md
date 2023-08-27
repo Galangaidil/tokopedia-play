@@ -510,8 +510,6 @@ const limitedText = useTextLimit("This is a text", 10);
 ## Deployment
 
 The backend and frontend are deployed to DigitalOcean App Platform, using Docker.
-You can access the deployed app
-at [https://coral-app-bus9u.ondigitalocean.app](https://coral-app-bus9u.ondigitalocean.app).
 
 ## Authors
 
